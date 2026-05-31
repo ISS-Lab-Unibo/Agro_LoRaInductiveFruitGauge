@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="immaginiBottone">
+    <file>img/green.png</file>
+    <file>img/red.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SetLoRaParam</class>
+ <widget class="QDialog" name="SetLoRaParam">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>568</width>
+    <height>334</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="2" column="0">
+    <widget class="QPushButton" name="pushSendLoRaConfig">
+     <property name="text">
+      <string>Salva configurazione LoRa</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" rowspan="2">
+    <widget class="QGroupBox" name="groupBox_LoRaConfiguration">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="title">
+      <string>LoRa configuration</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_devADDR">
+        <property name="text">
+         <string>Dev ADDR</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="line_devADDR"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_NSK">
+        <property name="text">
+         <string>Net. Session Key</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="line_NSK"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>App. Session key</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="line_ASK"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_appEui">
+        <property name="text">
+         <string>App. EUI</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lineEdit_appEui"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="checkBoxADR">
+        <property name="text">
+         <string>ADR Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>DR</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QComboBox" name="comboBox_DRSelection">
+        <item>
+         <property name="text">
+          <string>DR0</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>DR1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>DR2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>DR3</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>DR4</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>DR5</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>TX Interval (sec)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLineEdit" name="lineEdit_TXInterva"/>
+      </item>
+      <item row="9" column="1">
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>254</width>
+          <height>22</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Orientation::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>43</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
