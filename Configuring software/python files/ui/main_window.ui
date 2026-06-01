@@ -144,7 +144,7 @@
        <item row="11" column="0">
         <widget class="QPushButton" name="pushLeggiDati">
          <property name="text">
-          <string>Leggi dati</string>
+          <string>Read data</string>
          </property>
         </widget>
        </item>
@@ -154,7 +154,7 @@
           <bool>false</bool>
          </property>
          <property name="text">
-          <string>Modifica configurazione LoRa</string>
+          <string>Change LoRa parameters</string>
          </property>
         </widget>
        </item>
@@ -175,7 +175,7 @@
        <item row="12" column="0">
         <widget class="QPushButton" name="push_SetOrario">
          <property name="text">
-          <string>Set Orario</string>
+          <string>Set time</string>
          </property>
         </widget>
        </item>
@@ -303,7 +303,7 @@
     <item row="2" column="0">
      <widget class="QGroupBox" name="groupBox_Modalita">
       <property name="title">
-       <string>Modalità software</string>
+       <string>Set parameters</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
@@ -322,7 +322,7 @@
        <item>
         <widget class="QPushButton" name="pushConfigLetture">
          <property name="text">
-          <string>Configurazione letture</string>
+          <string>Set node config.</string>
          </property>
         </widget>
        </item>
@@ -345,7 +345,7 @@
     <item row="3" column="0">
      <widget class="QGroupBox" name="TensioniBatterie">
       <property name="title">
-       <string>Tensioni Batteria</string>
+       <string>Battery voltages</string>
       </property>
       <layout class="QFormLayout" name="formLayout_3">
        <item row="0" column="0">
@@ -369,7 +369,7 @@
              <item>
               <widget class="QLabel" name="label_2">
                <property name="text">
-                <string>Batteria interna [V]</string>
+                <string>Main battery [V]</string>
                </property>
               </widget>
              </item>
@@ -394,7 +394,7 @@
              <item>
               <widget class="QLabel" name="label_4">
                <property name="text">
-                <string>Batteria Backup [V]</string>
+                <string>Backup battery[V]</string>
                </property>
               </widget>
              </item>

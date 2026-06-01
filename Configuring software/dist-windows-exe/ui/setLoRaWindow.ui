@@ -17,7 +17,7 @@
    <item row="2" column="0">
     <widget class="QPushButton" name="pushSendLoRaConfig">
      <property name="text">
-      <string>Salva configurazione LoRa</string>
+      <string>Save LoRa config.</string>
      </property>
     </widget>
    </item>
