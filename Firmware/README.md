@@ -1,6 +1,6 @@
 # Firmware
 
-##STM32CubeIde_Project
+## STM32CubeIde_Project
 this folder contains the STM32CubeIde Project, if you want to look at the source code.
 
 Are you lazy? Do you want ony to flash the microcontrolloer? No problem: look at the..
