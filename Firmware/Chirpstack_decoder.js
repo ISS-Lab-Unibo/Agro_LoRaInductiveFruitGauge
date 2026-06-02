@@ -18,7 +18,7 @@ function Decode(fPort, bytes, variables) {
     Obj.analogico3 = roundTo(readUint16() / 10, 1);
     Obj.analogico4 = roundTo(readUint16() / 10, 1);
 
-    Obj.battVoltage = roundTo(readUint16() / 100, 2);
+    Obj.battVoltage = roundTo(readUint16() / 10, 2);
 
     var jsonString = JSON.stringify(Obj);
 
