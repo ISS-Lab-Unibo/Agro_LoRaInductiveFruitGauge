@@ -5,7 +5,7 @@ This repository contains the design files, manufacturing files, and assembly ref
 ## Folder Structure
 
 ### 1. `Grubber`
-<img src="Images/clippe.png" width="300" alt="Clippe">
+<img alt="immagine" src="https://github.com/ISS-Lab-Unibo/Agro_LoRaInductiveFruitGauge/blob/main/Images/Clippe.png" />
 This folder contains:
 
 * FreeCAD CAD files of the grubbers that must be attached to the pliers.
