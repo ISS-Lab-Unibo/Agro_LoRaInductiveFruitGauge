@@ -31,23 +31,13 @@ These files are supplied to facilitate understanding of the overall assembly and
 
 ### 3. `Teflon Disks`
 
+<img alt="immagine" src="https://github.com/ISS-Lab-Unibo/Agro_LoRaInductiveFruitGauge/blob/main/Images/Spacers.png" />
+
 This folder contains:
 
 * `.stl` files of the spacers/disks that must be manufactured in PTFE (Teflon).
 
 These components are required during the assembly of the pliers.
-
----
-
-# Mechanical Hardware Bill of Materials (To Be Completed)
-
-| Item | Description | Specification | Quantity | Notes |
-| ---- | ----------- | ------------- | -------- | ----- |
-|      |             |               |          |       |
-|      |             |               |          |       |
-|      |             |               |          |       |
-|      |             |               |          |       |
-|      |             |               |          |       |
 
 ---
 
@@ -58,3 +48,17 @@ These components are required during the assembly of the pliers.
 |  1    | Grubbers          	| 3D printing          | PETG         | 2         |  clippa acciaio armonico-Body_v.02     |
 |  2    |  Teflon spacer 1         | Machining           |  Teflon 1mm thicknes        |   2       |  Spessore_braccio.stl     |
 |  3    |  Teflon spacer 2         | Machining           | Teflon 1mm thicknes         |  2        |  Spessore_centrale.stl     |
+
+---
+
+# Mechanical Hardware Bill of Materials (To Be Completed)
+
+| Item | Description | Specification | Quantity | RS Code |
+| ---- | ----------- | ------------- | -------- | ----- |
+|  1    |   M2 bold          | 1) To connect the grubbers to the plier's structure 2) to fix one arm of the plier             |  3        |  560-271     |
+|   2   |   M2 screw 8mm          |  To connect the grubbers to the plier's structure             |   2       |   908-7637    |
+|   3   |             |               |          |       |
+|   4   |             |               |          |       |
+|      |             |               |          |       |
+
+---
