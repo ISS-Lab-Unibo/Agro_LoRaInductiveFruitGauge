@@ -5,7 +5,7 @@ This repository contains the design files, manufacturing files, and assembly ref
 ## Folder Structure
 
 ### 1. `Grubber`
-
+<img src="img/clippe.png" width="300" alt="Clippe">
 This folder contains:
 
 * FreeCAD CAD files of the grubbers that must be attached to the pliers.
