@@ -12,4 +12,4 @@ Use it with STM32CubeProgrammer to flash the MCU. No building required.
 If you use Chirpstack as LoRa server, use this Javascript to decode the received LoRa payload.
 
 ## lx3302a_config
-Fule to be written into the LX3302A IC, with the MIcrochip LXM9518 Gen2 Programmer
+File to be written into the LX3302A IC, with the MIcrochip LXM9518 Gen2 Programmer
