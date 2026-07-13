@@ -113,7 +113,7 @@ The sensor node programming connector pinout is reported in the following table.
 
 ### Programming connection
 
-![Logo di esempio](img/programming_port.png)
+![Logo di esempio](Images/programming_port.png)
 
 *Figure X. Connection of the programming probe to the sensor node PCB.*
 
@@ -283,7 +283,7 @@ Two units of each spacer geometry are required for the complete fruit gauge asse
 ### PTFE spacer geometry
 
 
-![PTFE spacer geometry](img/spacers.png)
+![PTFE spacer geometry](Images/spacers.png)
 
 *Figure X. PTFE spacer geometries manufactured from a 1 mm thick PTFE sheet.*
 
@@ -299,7 +299,7 @@ The corresponding editable FreeCAD source file is also provided.
 
 The gripping elements should be 3D printed in PETG.
 
-![CLIPPE geometry](img/Clippe.png)
+![CLIPPE geometry](Images/Clippe.png)
 
 Two identical components are required for each fruit gauge.
 
@@ -324,7 +324,7 @@ The different components must be assembled according to the exploded view shown 
 
 <!-- INSERT IMAGE: Complete exploded view -->
 
-![Fruit gauge exploded view](img/exploded.png)
+![Fruit gauge exploded view](Images/exploded.png)
 
 *Figure X. Exploded view of the inductive fruit gauge assembly.*
 
