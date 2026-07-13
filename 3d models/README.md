@@ -57,8 +57,8 @@ These components are required during the assembly of the pliers.
 | ---- | ----------- | ------------- | -------- | ----- |
 |  1    |   M2 bold          | 1) To connect the grubbers to the plier's structure 2) to fix one arm of the plier             |  3        |  560-271     |
 |   2   |   M2 screw 8mm          |  To connect the grubbers to the plier's structure             |   2       |   908-7637    |
-|   3   |             |               |          |       |
-|   4   |             |               |          |       |
-|      |             |               |          |       |
-
+|   3   |  RS 751-770, 0.63 mm Diam., ext Diam. 7mm, length 35mm, maximum length 101.5mm, k = 0.16N/mm, initial force = 12.2N           |               |  2        |       |
+|   4   |  M3 locknut           |               | 2         |       |
+|   5   |  M5 screw          |               | 2         |       |
+|   6   |  Self-tapping screw           |               | 2         |       |
 ---
