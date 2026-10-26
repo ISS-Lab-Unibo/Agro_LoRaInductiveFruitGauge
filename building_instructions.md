@@ -1,378 +1,282 @@
-# Sensor Node Building Instructions
+# Building Instructions
 
-This document describes the main steps required to manufacture, program, and mechanically assemble the Agro LoRa Inductive Fruit Gauge sensor node and the associated inductive fruit gauges.
+This guide explains how to build a complete Agro LoRa Inductive Fruit Gauge system: one sensor node and up to eight inductive fruit gauges (pliers).
 
-The procedure is organised into four main stages:
+**Contents**
 
-1. Required materials and tools
-2. Sensor node PCB programming
-3. Inductive fruit gauge programming
-4. Mechanical assembly of the fruit gauges
-
----
-
-# 1. Required Materials and Tools
-
-Before starting the assembly procedure, all the electronic, mechanical, and programming components listed in the following table should be available.
-
-| Category            | Item                                  | Description / Part Number                                                                                                                                     | Quantity          |
-| ------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| PCB                 | Assembled sensor node PCB             | PCB manufactured from the Gerber files available in [`Schematics and Gerbers/PCB sensor node`](Schematics%20and%20Gerbers/PCB%20sensor%20node)                | 1                 |
-| PCB                 | Inductive fruit gauge PCB             | PCB manufactured from the Gerber files available in [`Schematics and Gerbers/PCB pliers`](Schematics%20and%20Gerbers/PCB%20pliers). 1X GERBER-Braccio, 1X GERBER-Piste, 1X GERBER-spacer, 1x GERBER-TargetGrande.                            | 1 set per fruit gauge |
-| 3D printed part     | Fruit gripping elements               | `clippa acciaio armonico-Body_v.02.stl`, available in [`3d models/Grubber`](3d%20models/Grubber)                                                              | 2 per fruit gauge |
-| Mechanical material | PTFE sheet                            | 1 mm thick PTFE (Teflon) sheet. The sheet must be machined according to the geometries provided in the [`Teflon disks`](3d%20models/Teflon%20disks) directory | 2 set per fruit gauge           |
-| Mechanical hardware | M2 nut                                | M2 nut used for the fruit gauge mechanical assembly. RS Code 908-7637                                                                                                           | 3 per fruit gauge |
-| Mechanical hardware | M2 screw                              | M2 × 8 mm screw used to connect the gripping elements to the fruit gauge structure + . RS code  560-271                                                                           | 3 per fruit gauge |
-| Mechanical hardware | M3 locknut                            | M3 locknut used for the fruit gauge mechanical assembly. RS Code 521-917                                                                                                       | 3 per fruit gauge |
-| Mechanical hardware | M3 screw                              | M3 × 25 mm screw. RS code  560-271                                                                           | 3 per fruit gauge |
-| Mechanical hardware | Self-tapping screw                    | Required to fix harmonic steel to grippers. RS code  287-4014                                                                          | 2 per fruit gauge |
-| Mechanical hardware | Spring                                | RS 751-770, 0.63 mm Diam., ext Diam. 7mm, length 35mm, maximum length 101.5mm, k = 0.16N/mm, initial force = 12.2N                                                                                                                                                  | 2 per fruit gauge |
-| Mechanical hardware | harmonic steel wire                       |  Diam harmonic steel wire                                                                                                                                                  | 4 per fruit gauge |
-| Mechanical hardware | **TO BE COMPLETED**                   | **Additional central joint hardware / bearing specifications to be added**                                                                                    | **TBD**           |
-| Enclosure           | **ENCLOSURE PART NUMBER TO BE ADDED** | Weather-resistant enclosure for the sensor node electronics                                                                                                   | 1                 |
-| Battery           | Battery                |                                                                                        | 1 per sensor node |
-| Connector           | Fruit gauge connector                 | Connector used to connect each inductive fruit gauge to the sensor node                                                                                       | 1 per fruit gauge |
-| Cable               | UNITRONIC® LiYY                       | LAPP 0028304 cable used to connect the inductive fruit gauges to the sensor node                                                                              | As required       |
-| Programmer          | LXM9518                               | Microchip programmer for the LX3302A inductive position sensor interface IC                                                                                   | 1                 |
-| MCU programmer      | ST-LINK or SEGGER programmer          | SWD-compatible programmer for programming the sensor node MCU                                                                                                 | 1                 |
-| Software            | STM32CubeProgrammer                   | ST software used to program the sensor node MCU                                                                                                               | —                 |
-| Software            | IPCE                                  | Microchip Integrated Programming and Calibration Environment used with the LXM9518 programmer                                                                 | —                 |
-
-The UNITRONIC® LiYY LAPP 0028304 cable is used for the electrical connection between each fruit gauge and the sensor node. Its PVC-based cable construction is suitable for the proposed outdoor installation and is adopted to improve the robustness of the sensor interconnection against environmental exposure, including sunlight and the associated UV radiation.
-
-> **Note:** The exact sensor node enclosure part number must be added before finalising this document.
----
-
-# 2. PCB Manufacturing
-
-The system requires different PCB designs:
-
-* the main sensor node PCB;
-* the inductive fruit gauge PCB.
-
-The corresponding manufacturing files are provided in the [`Schematics and Gerbers`](Schematics%20and%20Gerbers) directory.
-
-## 2.1 Sensor Node PCB
-
-The sensor node PCB manufacturing files are available in:
-
-[`Schematics and Gerbers/PCB sensor node`](Schematics%20and%20Gerbers/PCB%20sensor%20node)
-
-The `Gerber production files` directory contains the files required for PCB manufacturing and assembly
-
-The provided production package includes the Gerber files and the associated BOM and component placement information required by an external PCB assembly service. Remember the assembly for the GERBER-LoRa Pinze Sent PCB. Bill of Materials and placement files are available in the same folder.
-
-## 2.2 Inductive Fruit Gauge PCB
-
-The fruit gauge PCB manufacturing files are available in:
-
-[`Schematics and Gerbers/PCB pliers`](Schematics%20and%20Gerbers/PCB%20pliers): 
-1X GERBER-Braccio, 1X GERBER-Piste, 1X GERBER-spacer, 1x GERBER-TargetGrande
-
-The corresponding Gerber production files must be used to manufacture the PCB forming the main structural and sensing elements of the inductive fruit gauge.
-
-The PCB integrates the inductive sensing coils and the LX3302A-based acquisition electronics. Remember the assembly for the GERBER-Piste PCB. Bill of Materials and placement files are available in the same folder.
+1. [Materials and tools](#1-materials-and-tools)
+2. [PCB manufacturing](#2-pcb-manufacturing)
+3. [Sensor node firmware programming](#3-sensor-node-firmware-programming)
+4. [LX3302A programming](#4-lx3302a-programming)
+5. [Fruit gauge mechanical assembly](#5-fruit-gauge-mechanical-assembly)
+6. [Wiring and final assembly](#6-wiring-and-final-assembly)
+7. [Configuration and first start-up](#7-configuration-and-first-start-up)
 
 ---
 
-# 3. Sensor Node MCU Programming
+## 1. Materials and tools
 
-The sensor node MCU must be programmed before the final assembly of the system.
+### 1.1 Sensor node (one per installation)
 
-The recommended programming procedure uses STM32CubeProgrammer and an SWD-compatible programmer, such as an ST-LINK or a SEGGER programming probe.
+| Item | Description | Qty |
+| ---- | ----------- | --- |
+| Sensor node PCB | Assembled PCB from [`Schematics and Gerbers/PCB sensor node`](Schematics%20and%20Gerbers/PCB%20sensor%20node) | 1 |
+| Li-ion battery | Single-cell Li-ion, JST PH 2-pin connector (the paper's energy budget is based on 800 mAh). Maximum charge voltage set by the BQ25570 to about 4.2 V | 1 |
+| Solar panel | Small photovoltaic cell, 2-pin connector (J3). The BQ25570 cold-starts from 330 mV and harvests down to about 100 mV | 1 |
+| RTC backup cell | Panasonic VL-1220 rechargeable coin cell (BT1), keeps the RTC running | 1 |
+| LoRa antenna | 868 MHz antenna with U.FL connector (or pigtail to an external antenna) | 1 |
+| Enclosure | Weather-resistant enclosure — **part number to be added** | 1 |
 
-## 3.1 Required Software
+### 1.2 Fruit gauge (per gauge)
 
-Download and install STM32CubeProgrammer from the official STMicroelectronics website.
+| Category | Item | Description / part number | Qty per gauge |
+| -------- | ---- | ------------------------- | ------------- |
+| PCB | Fruit gauge PCB set | From [`Schematics and Gerbers/PCB pliers`](Schematics%20and%20Gerbers/PCB%20pliers): 1 × `Piste` (assembled), 1 × `Braccio`, 1 × `TargetGrande`, 1 × `spacer` | 1 set |
+| 3D-printed part | Fruit clip | `clippa acciaio armonico-Body_v.02.stl` in [`3d models/Grubber`](3d%20models/Grubber), printed in PETG | 2 |
+| Mechanical material | PTFE sheet | 1 mm thick, cut to the shapes in [`3d models/Teflon disks`](3d%20models/Teflon%20disks) | 2 of each shape |
+| Mechanical hardware | M2 × 8 mm screw | Pan head, Pozidriv, zinc-plated steel (DIN 7985). Fixes the clips to the arms. RS 908-7637 | 3 |
+| Mechanical hardware | M2 nut | Hex nut, zinc-plated steel. RS 560-271 | 3 |
+| Mechanical hardware | M3 × 25 mm screw | Central joint — **RS code to be added** | 3 |
+| Mechanical hardware | M3 lock nut | Nylon-insert lock nut, A2 stainless steel (DIN 985). RS 521-917 | 3 |
+| Mechanical hardware | Self-tapping screw | No. 2 × 6.5 mm, pan head, Pozidriv, A2 stainless steel (DIN 7981C). Locks the spring-steel wires in the clips. RS 287-4014 | 2 |
+| Mechanical hardware | Extension spring | RS 751-770: wire Ø 0.63 mm, outer Ø 7 mm, length 35 mm (max. 101.5 mm), k = 0.16 N/mm, initial force 12.2 N | 2 |
+| Mechanical hardware | Spring-steel (piano) wire | For the fruit-contact fingers — **diameter to be added** | 4 |
+| Mechanical hardware | Heat-shrink tubing | Optional, softens the contact with the fruit skin | as needed |
+| Cable | LAPP UNITRONIC® LiYY 4 × 0.25 mm² | LAPP 0028304, up to 5 m per gauge | as needed |
+| Connector | Molex PicoBlade 4-pin housing + crimps | Mates with the 53398-0471 headers on the node | 1 |
 
-The precompiled firmware binary provided in the [`Firmware`](Firmware) directory is the recommended firmware image for reproducing the sensor node.
+The LAPP UNITRONIC® LiYY cable has PVC insulation, which holds up well outdoors (UV, moisture, dirt). The system was characterised with cables up to 5 m long.
 
-The complete firmware source code is also available in the repository. Advanced users may download the source code, configure the development environment, and compile the firmware independently.
+### 1.3 Analog sensors (optional)
 
-However, **building the firmware from source is not recommended for standard sensor node reproduction**, since compiler versions, library dependencies, and project configuration may affect the resulting firmware behaviour.
+Up to four sensors with a 0–3.3 V output. For each one you need a Molex PicoBlade 3-pin housing (it mates with 53398-0371).
 
-For this reason, the provided precompiled firmware image should normally be used.
+### 1.4 Tools and software
 
-## 3.2 Connecting the Programmer
-
-Connect the ST-LINK or SEGGER programmer to the sensor node programming interface.
-
-The sensor node programming connector pinout is reported in the following table. **Pin 1 is identified on the PCB by a white dot printed next to the connector.**
-
-| Pin | Signal       | Description                                                                                                                                                                                              |
-| --- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `VDD_TARGET` | Target voltage sensing input. Used by the programming probe to measure the target voltage. This connection is optional and can normally be left disconnected when the sensor node is powered separately. |
-| 2   | `SWCLK`      | Serial Wire Debug clock line.                                                                                                                                                                            |
-| 3   | `GND`        | Ground reference.                                                                                                                                                                                        |
-| 4   | `SWDIO`      | Serial Wire Debug bidirectional data line.                                                                                                                                                               |
-| 5   | `NRST`       | MCU hardware reset line.                                                                                                                                                                                 |
-| 6   | `NC`         | Not connected.                                                                                                                                                                                           |
-
-> **Note:** Pin 1 (`VDD_TARGET`) is marked on the sensor node PCB by a **white dot**, which can be used as a reference to determine the programming connector orientation.
-
-
-### Programming connection
-
-![Logo di esempio](Images/programming_port.png)
-
-*Figure X. Connection of the programming probe to the sensor node PCB.*
-
-## 3.3 Programming with STM32CubeProgrammer
-
-The following procedure can be used to program the sensor node:
-
-1. Connect the programming probe to the sensor node PCB.
-2. Connect the programmer to the computer.
-3. Open STM32CubeProgrammer.
-4. Select `ST-LINK` as the programming interface when using an ST-LINK probe.
-5. Configure the SWD connection.
-6. Press **Connect**.
-7. Verify that the target MCU is correctly detected.
-8. Open the firmware programming section.
-9. Select the precompiled firmware file provided in the repository.
-10. Verify the firmware start address according to the supplied firmware image.
-11. Start the programming procedure.
-12. Wait for the programming and verification process to complete.
-13. Disconnect STM32CubeProgrammer.
-14. Remove the programming probe from the sensor node.
-
-### STM32CubeProgrammer — Step 1
-
-<!-- INSERT IMAGE: STM32CubeProgrammer connection configuration -->
-
-![STM32CubeProgrammer connection](Images/CUBEPROGRAMMER_STEP_1_PLACEHOLDER.png)
-
-*Figure X. STM32CubeProgrammer connection configuration.*
-
-### STM32CubeProgrammer — Step 2
-
-<!-- INSERT IMAGE: Firmware file selection -->
-
-![STM32CubeProgrammer firmware selection](Images/CUBEPROGRAMMER_STEP_2_PLACEHOLDER.png)
-
-*Figure X. Selection of the precompiled sensor node firmware.*
-
-### STM32CubeProgrammer — Step 3
-
-<!-- INSERT IMAGE: Programming and verification -->
-
-![STM32CubeProgrammer programming](Images/CUBEPROGRAMMER_STEP_3_PLACEHOLDER.png)
-
-*Figure X. Firmware programming and verification.*
-
-After programming, disconnect the programming probe and power-cycle the sensor node.
+| Item | Purpose |
+| ---- | ------- |
+| ST-LINK (V2/V3) or SEGGER J-Link | SWD programming of the sensor node |
+| [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html) | Flashing the node firmware |
+| Microchip [LXM9518](https://www.microchip.com/en-us/development-tool/lxm9518) programmer | Programming the LX3302A on each fruit gauge |
+| Microchip IPCE (Integrated Programming and Calibration Environment) | Software for the LXM9518 |
+| 3D printer (PETG) | Fruit clips |
+| CNC mill / cutter or laser cutter suitable for PTFE | PTFE spacers |
+| Crimping tool for Molex PicoBlade | Cable connectors |
+| USB-C cable + Windows PC | Node configuration |
 
 ---
 
-# 4. LX3302A Programming
+## 2. PCB manufacturing
 
-Each inductive fruit gauge integrates a Microchip LX3302A inductive position sensor interface IC.
+Each Gerber package in [`Schematics and Gerbers`](Schematics%20and%20Gerbers) includes BOM and CPL (pick-and-place) files in the JLCPCB format (LCSC part numbers). These files can be uploaded directly to a PCB assembly service.
 
-Before the fruit gauge can be used, the LX3302A must be programmed with the appropriate sensor configuration.
+### 2.1 Sensor node PCB
 
-Programming is performed using the Microchip LXM9518 programmer and the Integrated Programming and Calibration Environment (IPCE).
+Folder: [`Schematics and Gerbers/PCB sensor node/Gerber production files`](Schematics%20and%20Gerbers/PCB%20sensor%20node/Gerber%20production%20files)
 
-The LXM9518 programmer is described on the Microchip website:
+* `GERBER-LoRa Pinze Sent.zip` — **6-layer**, 1.6 mm board
+* `BOM-LoRa Pinze Sent.csv`, `CPL-LoRa Pinze Sent.csv` — order it **with assembly**
 
-[LXM9518 Programmer](https://www.microchip.com/en-us/development-tool/lxm9518)
+Some parts may not be available from the assembler and must be hand-soldered: the battery/solar/RTC-cell connectors, the debug headers and, depending on the service, the U.FL connector. Compare the BOM with the schematic before ordering.
 
-## 4.1 Required Equipment
+### 2.2 Fruit gauge PCBs
 
-The following components are required:
+Folder: [`Schematics and Gerbers/PCB pliers/gerber production files`](Schematics%20and%20Gerbers/PCB%20pliers/gerber%20production%20files)
 
-* one LXM9518 programmer;
-* the Microchip IPCE software;
-* the inductive fruit gauge PCB;
-* the appropriate programming cable or adapter.
+| Package | Board | Assembly |
+| ------- | ----- | -------- |
+| `GERBER-Piste.zip` | Sensing arm: TX/RX coils, LX3302A, LMT01, MCP6541 | **Yes** — use `BOM-Piste.csv` and `CPL-Piste.csv` |
+| `GERBER-Braccio.zip` | Second arm | No (bare board) |
+| `GERBER-TargetGrande.zip` | Copper target | No (bare board) |
+| `GERBER-spacer.zip` | FR4 spacer | No (bare board) |
 
-## 4.2 Connecting the Fruit Gauge
+All four are 2-layer FR4, 1.6 mm. The FR4 is also the structural material of the gauge, so do not change the board thickness.
 
-During programming, the programming connector must be manually held against the programming contacts available on the fruit gauge PCB.
-
-The connector must remain correctly positioned and in electrical contact with the PCB for the entire programming procedure.
-
-The required connector position is shown in the following figures.
-
-### Programming connector position
-
-<!-- INSERT IMAGE: Programming connector held against the fruit gauge -->
-
-![LX3302A programming connector](Images/LX3302A_PROGRAMMING_CONNECTION_PLACEHOLDER.png)
-
-*Figure X. Programming connector manually held against the fruit gauge programming interface.*
-
-### Detail of the programming contacts
-
-<!-- INSERT IMAGE: Detail of programming pads -->
-
-![LX3302A programming pads](Images/LX3302A_PROGRAMMING_PADS_PLACEHOLDER.png)
-
-*Figure X. Detail of the LX3302A programming contacts.*
-
-> **Important:** The programming connector must be kept firmly in position by hand throughout the programming procedure. An intermittent electrical contact may interrupt communication with the LX3302A.
-
-A dedicated pogo-pin programming fixture is currently under development. This fixture will simplify the programming procedure and provide a more repeatable electrical connection to the fruit gauge programming pads.
-
-## 4.3 Programming with IPCE
-
-Connect the LXM9518 programmer to the computer and start the Microchip IPCE software.
-
-The recommended programming procedure is:
-
-1. Connect the LXM9518 programmer to the computer.
-2. Open IPCE.
-3. Position the programming connector on the fruit gauge programming contacts.
-4. Keep the connector firmly pressed against the PCB.
-5. Verify that the LX3302A is detected by IPCE.
-6. Load the LX3302A configuration provided with this repository.
-7. Verify the programmed sensor parameters.
-8. Start the EEPROM programming procedure.
-9. Wait until the programming process has completed.
-10. Verify the programmed configuration.
-11. Remove the programming connector from the fruit gauge.
-
-### IPCE — Device connection
-
-<!-- INSERT IMAGE: IPCE device detection -->
-
-![IPCE device connection](Images/IPCE_STEP_1_PLACEHOLDER.png)
-
-*Figure X. LX3302A detection using the IPCE software.*
-
-### IPCE — Configuration loading
-
-<!-- INSERT IMAGE: IPCE configuration loading -->
-
-![IPCE configuration loading](Images/IPCE_STEP_2_PLACEHOLDER.png)
-
-*Figure X. Loading the LX3302A configuration.*
-
-### IPCE — EEPROM programming
-
-<!-- INSERT IMAGE: LX3302A EEPROM programming -->
-
-![IPCE programming](Images/IPCE_STEP_3_PLACEHOLDER.png)
-
-*Figure X. Programming the LX3302A internal configuration memory.*
-
-The LXM9518 and IPCE are specifically intended for configuration and calibration of Microchip inductive position sensor ICs. The LX3302A stores its digital calibration and configuration parameters in non-volatile EEPROM.
+> **Note:** the LMT01 (U1) has no LCSC code in `BOM-Piste.csv`. Source it separately if the assembler cannot provide it.
 
 ---
 
-# 5. Fruit Gauge Mechanical Assembly
+## 3. Sensor node firmware programming
 
-After the PCB has been manufactured and the LX3302A programmed, the mechanical components of the fruit gauge can be assembled.
+Use the precompiled firmware in [`Firmware`](Firmware) (`RAK3172_Ver_1.0.0_2026-06-02.hex`). The STM32CubeIDE project is also available, but rebuilding is only needed if you want to change the firmware: a different toolchain or library version can change its behaviour.
 
-The mechanical design files are available in the [`3d models`](3d%20models) directory.
+### 3.1 SWD connector (CN1)
 
-## 5.1 Manufacturing the PTFE Spacers
+Pin 1 is marked on the PCB with a **white dot**.
 
-The fruit gauge uses PTFE spacers to reduce friction between the moving PCB elements and allow smooth relative rotation of the two arms.
+| Pin | Signal | Notes |
+| --- | ------ | ----- |
+| 1 | `VDD` | Target voltage reference for the probe. Can be left unconnected if the node is powered by its battery |
+| 2 | `SWCLK` | PA14 |
+| 3 | `GND` | |
+| 4 | `SWDIO` | PA13 |
+| 5 | `NRST` | MCU reset |
+| 6 | `NC` | Not connected |
 
-A **1 mm thick PTFE sheet** must be machined according to the geometries provided in the [`Teflon disks`](3d%20models/Teflon%20disks) directory.
+![Programming connection](Images/programming_port.png)
 
-The following spacer geometries are provided:
+*Figure 1. Connection of the programming probe to the sensor node PCB.*
 
-* `Spessore_braccio.stl/.svg`;
-* `Spessore_centrale.stl/.svg`.
+### 3.2 Flashing with STM32CubeProgrammer
 
-The STL or SVG files define the required external geometry of the PTFE components and can be used as a dimensional reference for machining or cutting the 1 mm PTFE sheet.
+1. Power the node (battery connected).
+2. Connect the probe to CN1 and to the PC.
+3. Open STM32CubeProgrammer, select **ST-LINK** (or **J-LINK**), mode **SWD**, then press **Connect**.
+4. Check that the device is detected as STM32WLxx.
+5. Open **Erasing & Programming**, select the `.hex` file, tick **Verify programming** and press **Start Programming**.
+6. When it finishes, press **Disconnect**, remove the probe and power-cycle the node.
 
-Two units of each spacer geometry are required for the complete fruit gauge assembly.
+<!-- TODO: add STM32CubeProgrammer screenshots (connection, file selection, programming) to Images/ and reference them here. -->
 
-### PTFE spacer geometry
+The firmware is configured for the **EU868** region with **ABP** activation. The LoRaWAN keys are set later with the configuration software (section 7). They do not need to be compiled into the firmware.
 
+---
 
-![PTFE spacer geometry](Images/spacers.png)
+## 4. LX3302A programming
 
-*Figure X. PTFE spacer geometries manufactured from a 1 mm thick PTFE sheet.*
+Each fruit gauge has a Microchip LX3302A inductive position sensor IC. Its EEPROM must be programmed with [`Firmware/lx3302a_config.txt`](Firmware/lx3302a_config.txt), which configures the coil interface and the SENT output, before the gauge is assembled.
 
-## 5.2 Manufacturing the Fruit Gripping Elements
+### 4.1 Pads on the Piste board
 
-Two fruit gripping elements must be manufactured for each fruit gauge.
+The Piste board has two groups of pads:
 
-The printable STL file is available in the [`Grubber`](3d%20models/Grubber) directory:
+| Group | Pad | Signal |
+| ----- | --- | ------ |
+| **Programming** | J1 | `VIN` (5 V) |
+| | J9 | `GND` |
+| | J8 | `IO1` (PWM) |
+| | J7 | `IO2` (SENT) |
+| | J6 | `IO3` (analog out) |
+| **Cable** | J3 | `VIN` (5 V) |
+| | J2 | `GND` |
+| | J4 | `SENT` (IO2) |
+| | J5 | Temperature (LMT01 pulse output) |
 
-`clippa acciaio armonico-Body_v.02.stl`
+### 4.2 Programming procedure
 
-The corresponding editable FreeCAD source file is also provided.
+1. Connect the LXM9518 to the PC and start IPCE.
+2. Press the programming connector against the programming pads and **hold it firmly** for the whole procedure. A brief loss of contact will interrupt the communication.
+3. Check that IPCE detects the LX3302A.
+4. Load `lx3302a_config.txt`, check the parameters and write the EEPROM.
+5. Read the configuration back to check it, then remove the connector.
 
-The gripping elements should be 3D printed in PETG.
+<!-- TODO: add photos of the programming connector position and of the pads, and IPCE screenshots. -->
 
-![CLIPPE geometry](Images/Clippe.png)
+> A pogo-pin fixture is under development to make this step faster and more repeatable.
 
-Two identical components are required for each fruit gauge.
+---
 
-Each fruit gripping element must be equipped with two spring steel wires. The two wires must pass through the dedicated holes provided inside each gripper and be secured in position using a self-tapping screw.
+## 5. Fruit gauge mechanical assembly
 
-After installation, the spring steel wires must be bent to form a suitable gripping profile, allowing them to gently engage with the fruit surface and keep the fruit gauge correctly positioned during the monitoring period.
+The models are in [`3d models`](3d%20models).
 
-If required, the portions of the spring steel wires that come into contact with the fruit can be covered with heat-shrink tubing. This can provide a softer contact surface and reduce direct contact between the metal wires and the fruit skin.
+### 5.1 PTFE spacers
 
-<!-- INSERT IMAGE: Spring steel wire installation and bending -->
+The PTFE spacers sit between the moving boards. They reduce friction and backlash so that the arms rotate smoothly.
 
-![Spring steel wire installation](Images/GRIPPER_SPRING_WIRE_PLACEHOLDER.png)
+Cut a **1 mm PTFE sheet** to the two shapes in [`3d models/Teflon disks`](3d%20models/Teflon%20disks). Make **two of each** per gauge.
 
-*Figure X. Installation, fastening, and bending of the spring steel wires inside the fruit gripping element.*
+| Shape | Files |
+| ----- | ----- |
+| Arm spacer | `Spessore_braccio.stl` / `.svg` / `1.1mm_Spessore_braccio.nc` |
+| Central spacer | `Spessore_centrale.stl` / `.svg` / `1.1mm_Spessore_centrale.nc` |
 
+The `.svg` files work for laser/knife cutters. The `.nc` files are ready-made CNC toolpaths (cut depth 1.1 mm).
 
-## 5.3 Mechanical Assembly
+![PTFE spacer geometry](Images/Spacers.png)
 
-The different components must be assembled according to the exploded view shown below.
+*Figure 2. PTFE spacer shapes.*
 
-### Fruit gauge exploded view
+### 5.2 Fruit clips
 
-<!-- INSERT IMAGE: Complete exploded view -->
+1. Print **two** `clippa acciaio armonico-Body_v.02.stl` in **PETG** for each gauge.
+2. Thread two spring-steel wires through the holes in each clip and lock them with a self-tapping screw.
+3. Bend the wires into fingers that hold the fruit gently without squeezing it.
+4. Optionally, cover the parts touching the fruit with heat-shrink tubing.
+
+![Fruit clip](Images/Clippe.png)
+
+*Figure 3. PETG fruit clip.*
+
+<!-- TODO: add a photo of the spring-steel wires installed and bent. -->
+
+### 5.3 Assembly
 
 ![Fruit gauge exploded view](Images/exploded.png)
 
-*Figure X. Exploded view of the inductive fruit gauge assembly.*
+*Figure 4. Exploded view of the fruit gauge.*
 
-The recommended assembly sequence is as follows:
-
-1. Prepare the two fruit gauge PCB arms.
-2. Position the PTFE spacers according to the exploded view.
-3. Align the central rotation interfaces of the two PCB arms.
-4. Install the central mechanical joint components.
-5. Assemble the two PCB arms while ensuring free relative rotation.
-6. Install the two PETG fruit gripping elements.
-7. Fix each gripping element using the M2 × 8 mm screws and M2 nuts.
-8. Verify the alignment of the two fruit gripping elements.
-9. Manually open and close the fruit gauge.
-10. Verify that the two arms rotate smoothly and without significant mechanical interference.
-
-The PTFE components must remain correctly positioned between the moving surfaces during assembly.
-
-After tightening the mechanical fasteners, verify that the fruit gauge can move freely throughout its operating range.
-
-Excessive tightening of the central joint may increase friction and negatively affect the detection of small fruit diameter variations.
+1. Lay out the Piste arm, the Braccio arm, the target and the FR4 spacer.
+2. Place the PTFE spacers as shown in the exploded view.
+3. Align the central holes and insert the M3 × 25 mm screws, then the M3 lock nuts.
+4. Tighten just enough to remove backlash. The arms must still rotate freely: **too much friction hides the small diameter changes you want to measure.**
+5. Fit the two extension springs that close the arms onto the fruit.
+6. Mount the two PETG clips with the M2 × 8 mm screws and M2 nuts, then check that they face each other.
+7. Open and close the gauge by hand across its whole range and check that it moves smoothly.
 
 ---
 
-# 6. Final Assembly
+## 6. Wiring and final assembly
 
-Once the fruit gauges and the sensor node have been programmed and mechanically assembled, the system can be interconnected.
+### 6.1 Fruit gauge cable
 
-Connect each inductive fruit gauge to the sensor node using the UNITRONIC® LiYY LAPP 0028304 cable and the selected connectors.
+Solder the LAPP 4 × 0.25 mm² cable to the **cable pads** of the Piste board and crimp a 4-pin PicoBlade connector on the other end:
 
-Verify the cable wiring and connector pinout before connecting the fruit gauge to the sensor node.
+| Node connector pin (J9–J16) | Signal | Piste pad |
+| --------------------------- | ------ | --------- |
+| 1 | GND | J2 |
+| 2 | Temperature | J5 |
+| 3 | SENT | J4 |
+| 4 | +5 V (switched) | J3 |
 
-### Fruit gauge cable connection
+Note your wire colours here, so that every gauge is wired the same way: <!-- TODO: add LAPP wire colours --> *to be completed*.
 
-<!-- INSERT IMAGE: Cable connection between fruit gauge and sensor node -->
+Fruit gauge channels map to node connectors as follows: channel 1 → J9, channel 2 → J10, … channel 8 → J16.
 
-![Fruit gauge cable connection](Images/FRUIT_GAUGE_CABLE_CONNECTION_PLACEHOLDER.png)
+### 6.2 Analog sensors
 
-*Figure X. Connection between an inductive fruit gauge and the sensor node.*
+| Pin (J5–J8) | Signal |
+| ----------- | ------ |
+| 1 | +3.3 V switched supply |
+| 2 | Analog input (0–3.3 V) |
+| 3 | GND |
 
-Install the sensor node PCB inside the selected **ENCLOSURE PART NUMBER TO BE ADDED** enclosure.
+Analog channel 1 → J8, channel 2 → J7, channel 3 → J6, channel 4 → J5.
 
-After completing the assembly, verify:
+The inputs are protected with BAV199 diodes and 10 Ω series resistors, but they must not go above 3.3 V.
 
-* sensor node power-up;
-* communication with each connected fruit gauge;
-* valid SENT data acquisition;
-* LoRa/LoRaWAN configuration;
-* wireless data transmission.
+### 6.3 Power and antenna
 
-The sensor node can then be configured using the dedicated software provided in the [`Configuring software`](Configuring%20software) directory.
+* Battery → J2 (JST PH, pin 1 = +, pin 2 = GND). **Check the polarity:** battery leads are not standardised.
+* Solar panel → J3 (pin 1 = +, pin 2 = GND).
+* VL-1220 coin cell → BT1.
+* Antenna → U.FL connector J4.
+
+Mount the PCB in the enclosure and route the gauge cables through cable glands.
+
+<!-- TODO: add a photo of the completed wiring. -->
+
+---
+
+## 7. Configuration and first start-up
+
+1. Connect the node to the PC with a USB-C cable. The CH340E draws its power from USB, so the configuration link does not drain the battery.
+2. Start the [configuration software](Configuring%20software), choose the COM port at **115200** baud and connect.
+3. Press **Read data**, then set:
+   * **Dev ADDR**, **Net. Session Key**, **App. Session Key**, **App. EUI** and **ADR**. These must match the device registered on your network server (ABP).
+   * **DR** (0–5) and **TX interval** (seconds).
+   * **Set time** to synchronise the RTC.
+4. In **Set node config.**, enable the connected gauges and analog inputs and set:
+   * the number of SENT samples to average and the thermal compensation parameters of each gauge (arm length, clip length, thermal expansion coefficients);
+   * the number of samples and the pre-sampling time of each analog input.
+5. Use the on-demand reading to check every gauge: raw value, temperature and diameter.
+6. Disconnect USB. The node goes back to acquisition mode.
+7. Add [`Firmware/Chirpstack_decoder.js`](Firmware/Chirpstack_decoder.js) to the device profile on your network server and check that uplinks arrive.
+
+Checklist before installing the node in the field:
+
+- [ ] Node powers up and the battery voltage is plausible
+- [ ] Every connected gauge returns a valid SENT reading and temperature
+- [ ] Analog inputs read the expected values
+- [ ] Uplinks are received and decoded
+- [ ] The solar panel charges the battery

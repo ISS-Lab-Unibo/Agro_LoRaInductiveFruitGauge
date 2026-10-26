@@ -1,64 +1,55 @@
-# PLIERS PRODUCTION OVERVIEW and REQUIRED MATERIALS
+# 3D Models
 
-This repository contains the design files, manufacturing files, and assembly references required for the gripper system and its integration with the pliers assembly.
+Mechanical files for the inductive fruit gauge (plier).
 
-## Folder Structure
+Most of the gauge's structure is made of the PCBs themselves: FR4 is the circuit substrate and also the structural material of the arms. FR4 expands much less with temperature than the 3D-printed arms of earlier versions (α ≈ 1.2·10⁻⁵ K⁻¹), so less thermal compensation is needed. The only parts that are not PCBs are the PETG fruit clips, the PTFE spacers and standard hardware.
 
-### 1. `Grubber`
-<img alt="immagine" src="https://github.com/ISS-Lab-Unibo/Agro_LoRaInductiveFruitGauge/blob/main/Images/Clippe.png" />
-This folder contains:
+![Exploded view](../Images/exploded.png)
 
-* FreeCAD CAD files of the grubbers that must be attached to the pliers.
-* Printable `.stl` files corresponding to the grubber components.
+## Folder structure
 
-These files are intended for manufacturing and assembly of the gripping elements.
+### `Grubber/` — fruit clips (manufacture)
 
----
+![Fruit clip](../Images/Clippe.png)
 
-### 2. `Pliers cad files and renderings`
+| File | Description |
+| ---- | ----------- |
+| `clippa acciaio armonico-Body_v.02.stl` | Printable fruit clip |
+| `clippa acciaio armonico_v.02.FCStd` | FreeCAD source |
 
-This folder is provided **for reference purposes only**.
+Each clip holds two spring-steel wires, locked with a self-tapping screw and bent into fingers that grip the fruit. Print the clips in **PETG**, which withstands outdoor use and is self-extinguishing. The clip length expands with temperature and is included in the thermal compensation, so enter it in the configuration software.
 
-It contains:
+### `Teflon disks/` — PTFE spacers (manufacture)
 
-* STEP files of the various pliers subassemblies and components.
-* A complete rendering of the assembled pliers.
-* The full pliers assembly in both STEP and FreeCAD formats.
+![PTFE spacers](../Images/Spacers.png)
 
-These files are supplied to facilitate understanding of the overall assembly and integration of the grubbers.
+| File | Description |
+| ---- | ----------- |
+| `Spessore_braccio.stl` / `.svg` | Arm spacer outline |
+| `Spessore_centrale.stl` / `.svg` | Central spacer outline |
+| `1.1mm_Spessore_braccio.nc` / `1.1mm_Spessore_centrale.nc` | CNC G-code toolpaths (1.1 mm cut depth) |
 
----
+Cut them from a 1 mm PTFE sheet. The spacers go between the moving boards: they reduce friction and backlash so that the arms rotate freely and small diameter changes are not hidden by stiction.
 
-### 3. `Teflon Disks`
+### `Pliers cad files and renderings/` — reference only
 
-<img alt="immagine" src="https://github.com/ISS-Lab-Unibo/Agro_LoRaInductiveFruitGauge/blob/main/Images/Spacers.png" />
+STEP models of the gauge PCBs and the full assembly. Use them to understand how the parts fit together and to design enclosures or accessories. **Do not use them for manufacturing.** The PCBs are made from the Gerbers in [`Schematics and Gerbers/PCB pliers`](../Schematics%20and%20Gerbers/PCB%20pliers).
 
-This folder contains:
+| File | Description |
+| ---- | ----------- |
+| `Piste.step` | Sensing arm (coils + electronics) |
+| `Braccio.step` | Second arm |
+| `Target.step` | Inductive target |
+| `Spacer.step` | FR4 spacer |
+| `All_outline.step` | Full assembly |
+| `Rendering.FCStd` | FreeCAD assembly and rendering |
 
-* `.stl` files of the spacers/disks that must be manufactured in PTFE (Teflon).
+## Manufactured parts (per gauge)
 
-These components are required during the assembly of the pliers.
+| Part | Process | Material | Qty | File |
+| ---- | ------- | -------- | --- | ---- |
+| Fruit clip | 3D printing | PETG | 2 | `Grubber/clippa acciaio armonico-Body_v.02.stl` |
+| Arm spacer | CNC / laser / knife | PTFE, 1 mm | 2 | `Teflon disks/Spessore_braccio.*` |
+| Central spacer | CNC / laser / knife | PTFE, 1 mm | 2 | `Teflon disks/Spessore_centrale.*` |
 
----
-
-# Manufactured Parts List 
-
-| Item | Part Name | Manufacturing Process (3D Printing / Machining) | Material | Quantity | File name|
-| ---- | --------- | ----------------------------------------------- | -------- | -------- | ----- |
-|  1    | Grubbers          	| 3D printing          | PETG         | 2         |  clippa acciaio armonico-Body_v.02     |
-|  2    |  Teflon spacer 1         | Machining           |  Teflon 1mm thicknes        |   2       |  Spessore_braccio.stl     |
-|  3    |  Teflon spacer 2         | Machining           | Teflon 1mm thicknes         |  2        |  Spessore_centrale.stl     |
-
----
-
-# Mechanical Hardware Bill of Materials (To Be Completed)
-
-| Item | Description | Specification | Quantity | RS Code |
-| ---- | ----------- | ------------- | -------- | ----- |
-|  1    |   M2 bold          | 1) To connect the grubbers to the plier's structure 2) to fix one arm of the plier             |  3        |  560-271     |
-|   2   |   M2 screw 8mm          |  To connect the grubbers to the plier's structure             |   2       |   908-7637    |
-|   3   |  RS 751-770, 0.63 mm Diam., ext Diam. 7mm, length 35mm, maximum length 101.5mm, k = 0.16N/mm, initial force = 12.2N           |               |  2        |       |
-|   4   |  M3 locknut           |               | 2         |       |
-|   5   |  M5 screw          |               | 2         |       |
-|   6   |  Self-tapping screw           |               | 2         |       |
----
+The full list of screws, nuts, springs and wires is in the [building instructions](../building_instructions.md#12-fruit-gauge-per-gauge).
